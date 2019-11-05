@@ -1,5 +1,8 @@
+
 @app.route('/sub')
 def subtraction():
+@app.route('/mul')
+def multiplaction():
     value1=request.args.get('A',default = 0, type = Fraction)
     value2=request.args.get('B',default = 0, type = Fraction)
     testfraction = validate(str(value1))
@@ -15,4 +18,5 @@ def subtraction():
     else:
     	result2 =value2
     result = result1-result2
+    result = result1*result2s
     return str(result)
