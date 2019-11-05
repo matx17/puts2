@@ -1,14 +1,5 @@
-from flask import Flask, request
-from fractions import Fraction
-app = Flask(__name__)
-def validate(s):
-    val = s.split('/')
-    return len(val)==2
-@app.route('/')
-def index():
-    return 'Usage;\n<Operation>?A=<Value1>&B=<Value2>\n'
-@app.route('/add')
-def addition1():
+@app.route('/sub')
+def subtraction():
     value1=request.args.get('A',default = 0, type = Fraction)
     value2=request.args.get('B',default = 0, type = Fraction)
     testfraction = validate(str(value1))
@@ -23,5 +14,5 @@ def addition1():
     	result2 = float(temp2[0])/int(temp2[1])
     else:
     	result2 =value2
-    result = result1+result2
+    result = result1-result2
     return str(result)
