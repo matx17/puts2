@@ -8,7 +8,6 @@ def validate(s):
 def index():
     return 'Usage;\n<Operation>?A=<Value1>&B=<Value2>\n'
 
-
 @app.route('/add')
 def addition1():
     value1=request.args.get('A',default = 0, type = Fraction)
@@ -27,6 +26,7 @@ def addition1():
     	result2 =value2
     result = result1+result2
     return str(result)
+
 @app.route('/sub')
 def subtraction():
     value1=request.args.get('A',default = 0, type = Fraction)
@@ -45,9 +45,9 @@ def subtraction():
     	result2 =value2
     result = result1-result2
     return str(result)
+
 @app.route('/mul')
 def multiplaction():
-
     value1=request.args.get('A',default = 0, type = Fraction)
     value2=request.args.get('B',default = 0, type = Fraction)
     testfraction = validate(str(value1))
@@ -65,6 +65,24 @@ def multiplaction():
     result = result1*result2
     return str(result)
 
+@app.route('/div')
+def division():
+    value1=request.args.get('A',default = 0, type = Fraction)
+    value2=request.args.get('B',default = 0, type = Fraction)
+    testfraction = validate(str(value1))
+    testfraction1 = validate(str(value2))
+    if(testfraction==True):    
+    	temp1 = str(value1).split('/')
+    	result1 = float(temp1[0])/int(temp1[1])
+    else:
+    	result1 =  value1
+    if(testfraction1==True):    
+    	temp2 = str(value2).split('/')
+    	result2 = float(temp2[0])/int(temp2[1])
+    else:
+    	result2 =value2
+    result = result1/result2
+    return str(result)
 
 if __name__ == "__main__":
     app.run('0.0.0.0')
