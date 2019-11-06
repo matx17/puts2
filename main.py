@@ -1,3 +1,12 @@
+from flask import Flask, request
+from fractions import Fraction
+app = Flask(__name__)
+def validate(s):
+    val = s.split('/')
+    return len(val)==2
+@app.route('/')
+def index():
+    return 'Usage;\n<Operation>?A=<Value1>&B=<Value2>\n'
 @app.route('/sub')
 def subtraction():
     value1=request.args.get('A',default = 0, type = Fraction)
@@ -16,3 +25,6 @@ def subtraction():
     	result2 =value2
     result = result1-result2
     return str(result)
+
+if __name__ == "__main__":
+    app.run('0.0.0.0')
